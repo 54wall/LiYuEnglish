@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <pri.weiqiang.liyuenglish.widget.swipecardview.SwipeFlingAdapterView
+        android:id="@+id/swipe_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:max_visible="4"
+        app:min_adapter_stack="4"
+        app:y_offset_step="@dimen/memory_swipe_offset_y" />
+
+</RelativeLayout>
