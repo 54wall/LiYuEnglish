@@ -2,6 +2,7 @@ package pri.weiqiang.liyuenglish.mvp.model;
 
 import java.util.List;
 
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import pri.weiqiang.liyuenglish.mvp.bean.BaiduTranslateBean;
 import pri.weiqiang.liyuenglish.mvp.bean.Book;
@@ -15,6 +16,7 @@ import pri.weiqiang.liyuenglish.mvp.bean.zhihu.StoryContentEntity;
 
 
 public interface BaseModel<T> {
+
 
     List<T> getData();
 

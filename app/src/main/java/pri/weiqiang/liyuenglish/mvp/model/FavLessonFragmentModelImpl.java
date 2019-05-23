@@ -9,6 +9,8 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import pri.weiqiang.liyuenglish.comparator.LessonFavComporator;
@@ -17,12 +19,12 @@ import pri.weiqiang.liyuenglish.mvp.bean.LessonFav;
 
 
 public class FavLessonFragmentModelImpl implements BaseModel.FavLessonFragmentModel {
-
+    protected CompositeDisposable compositeDisposable = new CompositeDisposable(); //管理事件订阅
     private String TAG = FavLessonFragmentModelImpl.class.getSimpleName();
 
     @Override
     public void getData(Consumer<List<LessonFav>> consumer, Consumer<Throwable> throwable) {
-        Observable.create(new ObservableOnSubscribe<List<LessonFav>>() {
+        Disposable d = Observable.create(new ObservableOnSubscribe<List<LessonFav>>() {
             @Override
             public void subscribe(ObservableEmitter<List<LessonFav>> emitter) throws Exception {
                 List<LessonFav> list;
@@ -40,5 +42,7 @@ public class FavLessonFragmentModelImpl implements BaseModel.FavLessonFragmentMo
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(consumer, throwable);
+
+        compositeDisposable.add(d);
     }
 }
